@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 
 import userRouter from "./routes/user.routes";
 import authRouter from "./routes/auth.routes";
+import docRouter from './docs/docs.routes'
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use(userRouter);
 app.use(authRouter);
+app.use(docRouter)
 
 const port = process.env.PORT;
 
