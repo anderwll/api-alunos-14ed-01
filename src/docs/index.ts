@@ -18,7 +18,19 @@ const swaggerDocs = {
   ],
   paths: {
     "/users": {
-      get: {},
+      get: {
+        tags: ["users"],
+        summary: "Listar usuários",
+        description: "Essa rota faz a listagem de todos os usuários",
+        response: {
+          200: {
+
+          },
+          401: {
+
+          },
+        },
+      },
       post: {},
     },
   },
