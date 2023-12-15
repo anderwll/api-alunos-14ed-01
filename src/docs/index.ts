@@ -16,7 +16,12 @@ const swaggerDocs = {
       url: "http://localhost:8080",
     },
   ],
-  paths: {},
+  paths: {
+    "/users": {
+      get: {},
+      post: {},
+    },
+  },
 };
 
 export default swaggerDocs;
