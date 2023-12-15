@@ -13,12 +13,10 @@ const swaggerDocs = {
       url: "http://localhost:3333",
     },
     {
-        url: "http://localhost:8080",
-      },
+      url: "http://localhost:8080",
+    },
   ],
-  paths: {
-
-  }
+  paths: {},
 };
 
 export default swaggerDocs;
