@@ -8,11 +8,11 @@ datasource db {
 }
 
 model User {
-  id String @id @db.Uuid
-  login String @unique
-  password String @db.VarChar()
-  enable Boolean @default(true)
-   posts Post[]
+  id          String       @id @db.Uuid
+  login       String       @unique
+  password    String       @db.VarChar()
+  enable      Boolean      @default(true)
+  assessments Assessment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -20,19 +20,15 @@ model User {
   @@map("users")
 }
 
-model Post {
-  id       Int  @id @default(autoincrement())
-  author   User @relation(fields: [authorId], references: [id])
-  authorId String @db.Uuid // relation scalar field  (used in the `@relation` attribute above)
-}
+model Assessment {
+  id     String  @id @db.Uuid
+  module String  @db.VarChar(100)
+  note   Decimal @db.Decimal(4, 2)
+  idUser String  @map("id_user") @db.Uuid
+  user   User    @relation(fields: [idUser], references: [id])
 
-model Classroom {
-  id String @id @db.Uuid
-  name String
-  enable Boolean @default(true)
-  
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("classrooms")
-} 
+  @@map("assessments")
+}

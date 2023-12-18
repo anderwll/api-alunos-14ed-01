@@ -39,14 +39,6 @@ class AuthController {
       data: { token, user: payload },
     });
   }
-
-  public logout(req: Request, res: Response) {
-    console.log("logout");
-
-    return res
-      .status(200)
-      .send({ success: true, message: "Logout efetuado com sucesso" });
-  }
 }
 
 export default AuthController;

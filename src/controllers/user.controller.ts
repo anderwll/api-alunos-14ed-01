@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import userService from "../services/user.service";
 
 class UserController {
-  public async index(req: Request, res: Response) {
+  public async findAll(req: Request, res: Response) {
     const users = await userService.findAll();
 
     return res
@@ -27,12 +27,6 @@ class UserController {
       .status(404)
       .send({ success: false, message: "Erro ao criar usuário." });
   }
-
-  public show(req: Request, res: Response) {}
-
-  public update(req: Request, res: Response) {}
-
-  public delete(req: Request, res: Response) {}
 }
 
 export default UserController;

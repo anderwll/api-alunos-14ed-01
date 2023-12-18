@@ -4,11 +4,7 @@ import bcrypt from "bcrypt";
 
 class UserService {
   public async findAll(): Promise<any> {
-    const data = await repository.user.findMany({
-      include: {
-        posts: true,
-      },
-    });
+    const data = await repository.user.findMany();
 
     return data;
   }
