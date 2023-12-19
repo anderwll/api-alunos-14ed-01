@@ -2,7 +2,7 @@ const swaggerDocs = {
   openapi: "3.0.3",
   info: {
     title: "API de Alunos - Growdev",
-    description: "Sistema de gerenciamento de alunos e suas avaliações",
+    description: "Sistema de gerenciamento de alunos e suas avaliações.",
     contact: {
       email: "growdev@growdev.com",
     },
@@ -20,6 +20,10 @@ const swaggerDocs = {
     {
       name: "Usuários",
       description: "Usuários da aplicação",
+    },
+    {
+      name: "Avaliações",
+      description: "Avaliações dos usuários cadastrados na aplicação",
     },
   ],
   paths: {
