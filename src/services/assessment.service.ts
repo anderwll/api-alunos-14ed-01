@@ -1,4 +1,5 @@
 import repository from "../database/prisma.databe";
+import { CreateAssessmentDTO } from "../dtos";
 
 class AssessmentService {
   public async findAll(idUser: string) {
@@ -9,7 +10,7 @@ class AssessmentService {
     return assessments;
   }
 
-  public async create(data: any) {
+  public async create(data: CreateAssessmentDTO) {
     const newAssessment = await repository.assessment.create({
       data: { ...data },
     });

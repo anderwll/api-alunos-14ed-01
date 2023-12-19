@@ -11,21 +11,44 @@ class UserController {
   }
 
   public async create(req: Request, res: Response) {
-    const { body } = req;
+    const { login, password } = req.body;
 
-    const newUser = await userService.create(body);
+    if (!login || !password) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Preencha todos os campos!" });
+    }
 
-    if (newUser) {
-      return res.status(201).send({
-        success: true,
-        message: "Usuário criado com sucesso.",
-        data: newUser.toJson(),
+    if (typeof login !== "string" || login.length <= 2) {
+      return res.status(400).send({
+        success: false,
+        message: "Login deve ser do tipo string e conter 3 caracteres.",
       });
     }
 
-    return res
-      .status(404)
-      .send({ success: false, message: "Erro ao criar usuário." });
+    if (typeof password !== "string" || password.length <= 2) {
+      return res.status(400).send({
+        success: false,
+        message: "Password deve ser do tipo string e conter 3 caracteres.",
+      });
+    }
+
+    const newUser = await userService.create({ login, password });
+
+    if (!newUser) {
+      return res
+        .status(404)
+        .send({
+          success: false,
+          message: "Não foi possível cadastrar usuário.",
+        });
+    }
+
+    return res.status(201).send({
+      success: true,
+      message: "Usuário criado com sucesso.",
+      data: newUser.toJson(),
+    });
   }
 }
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import userService from "../services/user.service";
 import authService from "../services/auth.service";
 import jwtService from "../services/jwt.service";
+import userService from "../services/user.service";
 
 class AuthController {
   public async login(req: Request, res: Response) {
@@ -31,6 +31,7 @@ class AuthController {
       enable: user.enable,
       login: user.login,
     };
+
     const token = jwtService.createToken(payload);
 
     return res.status(200).send({

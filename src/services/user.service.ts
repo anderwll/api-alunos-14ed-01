@@ -1,6 +1,7 @@
-import repository from "../database/prisma.databe";
-import User from "../models/user.model";
 import bcrypt from "bcrypt";
+import repository from "../database/prisma.databe";
+import { CreateUserDTO } from "../dtos";
+import User from "../models/user.model";
 
 class UserService {
   public async findAll(): Promise<any> {
@@ -9,12 +10,23 @@ class UserService {
     return data;
   }
 
-  public async create(data: any) {
-    const passwordHash = await bcrypt.hash(data.password, 10);
+  public async create(data: CreateUserDTO) {
+    const userExist = await repository.user.findUnique({
+      where: { login: data.login },
+    });
+
+    if (userExist) {
+      return null;
+    }
+
+    const passwordHash = await bcrypt.hash(
+      data.password,
+      Number(process.env.BCRYPT_SALT)
+    );
 
     const newUser = new User(data.login, passwordHash);
 
-    const createUser = await repository.user.create({
+    await repository.user.create({
       data: newUser.toSave(),
     });
 

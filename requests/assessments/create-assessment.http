@@ -1,0 +1,8 @@
+POST http://localhost:8080/assessments HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZmMjNiYTQ5LWU4N2UtNGYyYi1hNGMyLWM1M2QyNjBlYmRmMCIsImVuYWJsZSI6dHJ1ZSwibG9naW4iOiJhbmRlcndsbCIsImlhdCI6MTcwMjk0Njc5MSwiZXhwIjoxNzAzMDMzMTkxfQ.BHlersYQR07d9K4znM-LFkpk_bUKu6ftZCw1wKAXqb0
+
+{
+    "module": "Qualidade de Software",
+    "note": 8
+}
