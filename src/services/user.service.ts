@@ -24,7 +24,7 @@ class UserService {
       Number(process.env.BCRYPT_SALT)
     );
 
-    const newUser = new User(data.login, passwordHash);
+    const newUser = new User(data.login, passwordHash, data.type);
 
     await repository.user.create({
       data: newUser.toSave(),

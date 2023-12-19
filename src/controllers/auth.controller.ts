@@ -30,6 +30,7 @@ class AuthController {
       id: user.id,
       enable: user.enable,
       login: user.login,
+      type: user.type,
     };
 
     const token = jwtService.createToken(payload);
@@ -37,7 +38,7 @@ class AuthController {
     return res.status(200).send({
       success: true,
       message: "Login efetuado com sucesso",
-      data: { token, user: payload },
+      data: { user: payload, token },
     });
   }
 }

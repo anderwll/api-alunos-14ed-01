@@ -4,6 +4,7 @@ declare namespace Express {
       id: string;
       enable: boolean;
       login: string;
+      type: string;
       iat: number;
     };
   }

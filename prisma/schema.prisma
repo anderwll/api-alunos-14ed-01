@@ -12,6 +12,7 @@ model User {
   login       String       @unique
   password    String       @db.VarChar()
   enable      Boolean      @default(true)
+  type        EUserType    @default(F)
   assessments Assessment[]
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -31,4 +32,10 @@ model Assessment {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("assessments")
+}
+
+enum EUserType {
+  T
+  M
+  F
 }

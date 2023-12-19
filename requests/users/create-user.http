@@ -2,6 +2,7 @@ POST http://localhost:8080/users HTTP/1.1
 content-type: application/json
 
 {
-    "login": "anderwll",
-    "password": "senha123"
+    "login": "joao",
+    "password": "senha123",
+    "type": "T"
 }

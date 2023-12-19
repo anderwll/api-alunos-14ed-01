@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { EUserType } from "../enums";
 import userService from "../services/user.service";
 
 class UserController {
@@ -11,7 +12,7 @@ class UserController {
   }
 
   public async create(req: Request, res: Response) {
-    const { login, password } = req.body;
+    const { login, password, type } = req.body;
 
     if (!login || !password) {
       return res
@@ -33,15 +34,20 @@ class UserController {
       });
     }
 
-    const newUser = await userService.create({ login, password });
+    if (type !== EUserType.F && type !== EUserType.M && type !== EUserType.T) {
+      return res.status(400).send({
+        success: false,
+        message: "Type deve ser do tipo F, M ou T.",
+      });
+    }
+
+    const newUser = await userService.create({ login, password, type });
 
     if (!newUser) {
-      return res
-        .status(404)
-        .send({
-          success: false,
-          message: "Não foi possível cadastrar usuário.",
-        });
+      return res.status(404).send({
+        success: false,
+        message: "Não foi possível cadastrar usuário.",
+      });
     }
 
     return res.status(201).send({
