@@ -16,8 +16,6 @@ class AuthMiddleware {
 
       const verify = jwtService.verifyToken(token);
 
-      console.log("TOKEN DECODE --> ", verify);
-
       req.authUser = verify as {
         id: string;
         enable: boolean;
