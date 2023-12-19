@@ -33,6 +33,11 @@ const swaggerDocs = {
         summary: "Listar usuários",
         description:
           "Essa rota faz a listagem de todos os usuários da aplicação.",
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
         responses: {
           200: {
             description: "Sucesso",
@@ -172,6 +177,16 @@ const swaggerDocs = {
         required: ["login", "password", "type", "enable"],
       },
     },
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  security: {
+    bearerAuth: [],
   },
 };
 
