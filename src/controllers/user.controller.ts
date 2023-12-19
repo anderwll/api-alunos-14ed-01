@@ -8,7 +8,7 @@ class UserController {
 
     return res
       .status(200)
-      .send({ success: true, message: "Litagem de usuários", data: users });
+      .send({ success: true, message: "Listagem de usuários", data: users });
   }
 
   public async create(req: Request, res: Response) {
