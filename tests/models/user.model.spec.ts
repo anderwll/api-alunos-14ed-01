@@ -1,5 +1,6 @@
 import { EUserType } from "../../src/enums";
 import User from "../../src/models/user.model";
+import { prismaMock } from "../config/prisma.mock";
 
 describe("User Model", () => {
   // Sistema em teste
