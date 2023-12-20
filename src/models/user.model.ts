@@ -11,7 +11,7 @@ class User {
     private _type: EUserType
   ) {
     this._enable = true;
-    this._id = createUuid();
+    this._id = createUuid(); // v4
   }
 
   public getId() {
