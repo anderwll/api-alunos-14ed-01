@@ -31,7 +31,7 @@ class UserService {
       data: newUser.toSave(),
     });
 
-    return newUser;
+    return newUser.toJson();
   }
 
   public async findByLogin(login: string) {

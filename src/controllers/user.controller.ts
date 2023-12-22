@@ -53,7 +53,7 @@ class UserController {
     return res.status(201).send({
       success: true,
       message: "Usuário criado com sucesso.",
-      data: newUser.toJson(),
+      data: newUser,
     });
   }
 }
