@@ -1,8 +1,8 @@
+import { User as UserDB } from "@prisma/client";
 import bcrypt from "bcrypt";
 import repository from "../database/prisma.databe";
 import { CreateUserDTO } from "../dtos";
 import User from "../models/user.model";
-import { User as UserDB } from "@prisma/client";
 
 class UserService {
   public async findAll(): Promise<UserDB[]> {

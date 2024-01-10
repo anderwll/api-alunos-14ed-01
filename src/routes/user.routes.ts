@@ -7,6 +7,7 @@ const controller = new UserController();
 const authMiddleware = new AuthMiddleware();
 
 router.get("/users", authMiddleware.checkUser, controller.findAll);
+
 router.post("/users", controller.create);
 
 export default router;

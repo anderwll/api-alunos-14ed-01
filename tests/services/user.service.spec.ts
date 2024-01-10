@@ -1,9 +1,9 @@
 import { User } from "@prisma/client";
+import bcrypt from "bcrypt";
+import { CreateUserDTO } from "../../src/dtos";
+import { EUserType } from "../../src/enums";
 import UserService from "../../src/services/user.service";
 import { prismaMock } from "../config/prisma.mock";
-import { CreateUserDTO } from "../../src/dtos";
-import bcrypt from 'bcrypt'
-import { EUserType } from "../../src/enums";
 
 describe("User Service", () => {
   const createSut = () => {
@@ -55,34 +55,35 @@ describe("User Service", () => {
 
   describe("Create", () => {
     it("Deve retornar null quando já houver um usuário cadastrado com o login passado", async () => {
-      const sut = createSut()
+      const sut = createSut();
 
-      prismaMock.user.findUnique.mockResolvedValue({} as User)
+      prismaMock.user.findUnique.mockResolvedValue({} as User);
 
-      const result = await sut.create({} as CreateUserDTO)
+      const result = await sut.create({} as CreateUserDTO);
 
-      expect(result).toBeNull()
-    })
+      expect(result).toBeNull();
+    });
+
     it("Deve retornar o usuário criado caso não exista um login igual cadastrado no banco", async () => {
-      const sut = createSut()
+      const sut = createSut();
 
-      prismaMock.user.findUnique.mockResolvedValue(null)
-      const mockBcrypt = jest.fn().mockReturnValue("")
+      prismaMock.user.findUnique.mockResolvedValue(null);
+      const mockBcrypt = jest.fn().mockReturnValue("");
 
-      bcrypt.hash = mockBcrypt
+      bcrypt.hash = mockBcrypt;
 
-      prismaMock.user.create.mockResolvedValue({} as User)
+      prismaMock.user.create.mockResolvedValue({} as User);
 
       const result = await sut.create({
         login: "anyLogin",
         password: "anyPassword",
-        type: EUserType.M
-      })
+        type: EUserType.M,
+      });
 
-      expect(result).toHaveProperty("id", expect.any(String))
-      expect(result).toHaveProperty("login", "anyLogin")
-      expect(result).toHaveProperty("type", EUserType.M)
-      expect(result).toHaveProperty("enable", true)
-    })
-  })
+      expect(result).toHaveProperty("id", expect.any(String));
+      expect(result).toHaveProperty("login", "anyLogin");
+      expect(result).toHaveProperty("type", EUserType.M);
+      expect(result).toHaveProperty("enable", true);
+    });
+  });
 });
